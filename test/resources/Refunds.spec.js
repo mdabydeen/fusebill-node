@@ -1,17 +1,17 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('Refund Resource', function() {
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.refunds.create({
+      fusebill.refunds.create({
         amount: '300',
         charge: 'ch_123',
       })
 
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/refunds',
         headers: {},
@@ -25,8 +25,8 @@ describe('Refund Resource', function() {
 
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.refunds.retrieve('re_123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.refunds.retrieve('re_123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/refunds/re_123',
         data: {},
@@ -37,8 +37,8 @@ describe('Refund Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.refunds.list();
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.refunds.list();
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/refunds',
         data: {},
@@ -49,8 +49,8 @@ describe('Refund Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.refunds.update('re_123', {metadata: {key: 'abcd'}});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.refunds.update('re_123', {metadata: {key: 'abcd'}});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/refunds/re_123',
         headers: {},

@@ -72,7 +72,7 @@ describe('utils', function() {
       ].join('&'));
     });
 
-    describe('Stripe-specific cases', function() {
+    describe('Fusebill-specific cases', function() {
       it('Handles the `expand` array correctly (producing the form `expand[]=_` for each item', function() {
         expect(decodeURI(utils.stringifyRequestData({
           expand: ['a', 'foo', 'a.b.c'],

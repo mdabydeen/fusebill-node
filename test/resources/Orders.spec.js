@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('Order Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.orders.retrieve('orderIdFoo123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.orders.retrieve('orderIdFoo123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/orders/orderIdFoo123',
         data: {},
@@ -18,7 +18,7 @@ describe('Order Resource', function() {
 
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.orders.create({
+      fusebill.orders.create({
         currency: 'usd',
         items: [
           {
@@ -34,7 +34,7 @@ describe('Order Resource', function() {
         },
         email: 'jane@ros.en',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/orders',
         data: {
@@ -60,10 +60,10 @@ describe('Order Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.orders.list({
+      fusebill.orders.list({
         limit: 3,
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/orders',
         data: {
@@ -74,10 +74,10 @@ describe('Order Resource', function() {
     });
 
     it('Supports filtering by status', function() {
-      stripe.orders.list({
+      fusebill.orders.list({
         status: 'active',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/orders',
         data: {
@@ -90,10 +90,10 @@ describe('Order Resource', function() {
 
   describe('pay', function() {
     it('Sends the correct request', function() {
-      stripe.orders.pay('orderIdFoo3242', {
+      fusebill.orders.pay('orderIdFoo3242', {
         source: 'tok_FooBar',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/orders/orderIdFoo3242/pay',
         headers: {},
@@ -104,12 +104,12 @@ describe('Order Resource', function() {
 
   describe('returnOrder', function() {
     it('Sends the correct request', function() {
-      stripe.orders.returnOrder('orderIdFoo3242', {
+      fusebill.orders.returnOrder('orderIdFoo3242', {
         items: [
           {parent: 'sku_123'},
         ],
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/orders/orderIdFoo3242/returns',
         headers: {},
@@ -120,8 +120,8 @@ describe('Order Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.orders.update('orderIdFoo3242', {status: 'fulfilled'});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.orders.update('orderIdFoo3242', {status: 'fulfilled'});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/orders/orderIdFoo3242',
         headers: {},

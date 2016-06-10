@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('subscriptions Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.subscriptions.retrieve('test_sub');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.subscriptions.retrieve('test_sub');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/subscriptions/test_sub',
         headers: {},
@@ -18,8 +18,8 @@ describe('subscriptions Resource', function() {
 
   describe('del', function() {
     it('Sends the correct request', function() {
-      stripe.subscriptions.del('test_sub');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.subscriptions.del('test_sub');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'DELETE',
         url: '/v1/subscriptions/test_sub',
         headers: {},
@@ -30,10 +30,10 @@ describe('subscriptions Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.subscriptions.update('test_sub', {
+      fusebill.subscriptions.update('test_sub', {
         metadata: {a: '1234'},
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/subscriptions/test_sub',
         headers: {},
@@ -46,12 +46,12 @@ describe('subscriptions Resource', function() {
 
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.subscriptions.create({
+      fusebill.subscriptions.create({
         customer: 'test_cus',
         plan: 'gold',
       });
 
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/subscriptions',
         headers: {},
@@ -65,12 +65,12 @@ describe('subscriptions Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.subscriptions.list({
+      fusebill.subscriptions.list({
         limit: 3,
         customer: 'test_cus',
         plan: 'gold',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/subscriptions',
         headers: {},
@@ -86,8 +86,8 @@ describe('subscriptions Resource', function() {
   describe('Discount methods', function() {
     describe('deleteDiscount', function() {
       it('Sends the correct request', function() {
-        stripe.subscriptions.deleteDiscount('test_sub');
-        expect(stripe.LAST_REQUEST).to.deep.equal({
+        fusebill.subscriptions.deleteDiscount('test_sub');
+        expect(fusebill.LAST_REQUEST).to.deep.equal({
           method: 'DELETE',
           url: '/v1/subscriptions/test_sub/discount',
           headers: {},

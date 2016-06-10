@@ -8,28 +8,28 @@ require('chai').use(require('chai-as-promised'));
 
 var utils = module.exports = {
 
-  getUserStripeKey: function() {
+  getUserFusebillKey: function() {
     var key = process.env.STRIPE_TEST_API_KEY || 'tGN0bIwXnHdwOa85VABjPdSn8nWY7G7I';
 
     return key;
   },
 
-  getSpyableStripe: function() {
-    // Provide a testable stripe instance
+  getSpyableFusebill: function() {
+    // Provide a testable fusebill instance
     // That is, with mock-requests built in and hookable
 
-    var Stripe = require('../lib/stripe');
-    var stripeInstance = Stripe('fakeAuthToken');
+    var Fusebill = require('../lib/fusebill');
+    var fusebillInstance = Fusebill('fakeAuthToken');
 
-    stripeInstance.REQUESTS = [];
+    fusebillInstance.REQUESTS = [];
 
-    for (var i in stripeInstance) {
-      if (stripeInstance[i] instanceof Stripe.StripeResource) {
+    for (var i in fusebillInstance) {
+      if (fusebillInstance[i] instanceof Fusebill.FusebillResource) {
         // Override each _request method so we can make the params
         // available to consuming tests (revealing requests made on
         // REQUESTS and LAST_REQUEST):
-        stripeInstance[i]._request = function(method, url, data, auth, options, cb) {
-          var req = stripeInstance.LAST_REQUEST = {
+        fusebillInstance[i]._request = function(method, url, data, auth, options, cb) {
+          var req = fusebillInstance.LAST_REQUEST = {
             method: method,
             url: url,
             data: data,
@@ -38,13 +38,13 @@ var utils = module.exports = {
           if (auth) {
             req.auth = auth;
           }
-          stripeInstance.REQUESTS.push(req);
+          fusebillInstance.REQUESTS.push(req);
           cb.call(this, null, {});
         };
       }
     }
 
-    return stripeInstance;
+    return fusebillInstance;
   },
 
   /**
@@ -58,8 +58,8 @@ var utils = module.exports = {
     function CleanupUtility(timeout) {
       var self = this;
       this._cleanupFns = [];
-      this._stripe = require('../lib/stripe')(
-        utils.getUserStripeKey(),
+      this._fusebill = require('../lib/fusebill')(
+        utils.getUserFusebillKey(),
         'latest'
       );
       afterEach(function(done) {
@@ -99,22 +99,22 @@ var utils = module.exports = {
       },
       deleteCustomer: function(custId) {
         this.add(function() {
-          return this._stripe.customers.del(custId);
+          return this._fusebill.customers.del(custId);
         });
       },
       deletePlan: function(pId) {
         this.add(function() {
-          return this._stripe.plans.del(pId);
+          return this._fusebill.plans.del(pId);
         });
       },
       deleteCoupon: function(cId) {
         this.add(function() {
-          return this._stripe.coupons.del(cId);
+          return this._fusebill.coupons.del(cId);
         });
       },
       deleteInvoiceItem: function(iiId) {
         this.add(function() {
-          return this._stripe.invoiceItems.del(iiId);
+          return this._fusebill.invoiceItems.del(iiId);
         });
       },
     };

@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('InvoiceItems Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.invoiceItems.retrieve('invoiceItemIdTesting123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoiceItems.retrieve('invoiceItemIdTesting123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/invoiceitems/invoiceItemIdTesting123',
         headers: {},
@@ -18,10 +18,10 @@ describe('InvoiceItems Resource', function() {
 
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.invoiceItems.create({
+      fusebill.invoiceItems.create({
         customer: 'cust_id_888',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/invoiceitems',
         headers: {},
@@ -32,10 +32,10 @@ describe('InvoiceItems Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.invoiceItems.update('invoiceItemId1', {
+      fusebill.invoiceItems.update('invoiceItemId1', {
         amount: 1900,
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/invoiceitems/invoiceItemId1',
         headers: {},
@@ -46,8 +46,8 @@ describe('InvoiceItems Resource', function() {
 
   describe('del', function() {
     it('Sends the correct request', function() {
-      stripe.invoiceItems.del('invoiceItemId2');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoiceItems.del('invoiceItemId2');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'DELETE',
         url: '/v1/invoiceitems/invoiceItemId2',
         headers: {},
@@ -58,8 +58,8 @@ describe('InvoiceItems Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.invoiceItems.list();
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoiceItems.list();
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/invoiceitems',
         headers: {},

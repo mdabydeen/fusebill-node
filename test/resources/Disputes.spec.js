@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('Dispute Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.disputes.retrieve('dp_123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.disputes.retrieve('dp_123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/disputes/dp_123',
         data: {},
@@ -18,8 +18,8 @@ describe('Dispute Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.disputes.list();
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.disputes.list();
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/disputes',
         data: {},
@@ -30,8 +30,8 @@ describe('Dispute Resource', function() {
 
   describe('close', function() {
     it('Sends the correct request', function() {
-      stripe.disputes.close('dp_123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.disputes.close('dp_123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/disputes/dp_123/close',
         headers: {},
@@ -42,8 +42,8 @@ describe('Dispute Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.disputes.update('dp_123', {evidence: {customer_name: 'Bob'}});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.disputes.update('dp_123', {evidence: {customer_name: 'Bob'}});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/disputes/dp_123',
         headers: {},

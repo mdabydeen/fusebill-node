@@ -2,8 +2,8 @@
 
 var testUtils = require('./testUtils');
 var Promise = require('bluebird');
-var stripe = require('../lib/stripe')(
-  testUtils.getUserStripeKey(),
+var fusebill = require('../lib/fusebill')(
+  testUtils.getUserFusebillKey(),
   'latest'
 );
 
@@ -20,14 +20,14 @@ var CUSTOMER_DETAILS = {
   },
 };
 
-describe('Stripe Module', function() {
+describe('Fusebill Module', function() {
   var cleanup = new testUtils.CleanupUtility();
   this.timeout(20000);
 
   describe('ClientUserAgent', function() {
     it('Should return a user-agent serialized JSON object', function() {
       var d = Promise.defer();
-      stripe.getClientUserAgent(function(c) {
+      fusebill.getClientUserAgent(function(c) {
         d.resolve(JSON.parse(c));
       });
       return expect(d.promise).to.eventually.have.property('lang', 'node');
@@ -36,15 +36,15 @@ describe('Stripe Module', function() {
 
   describe('setTimeout', function() {
     it('Should define a default equal to the node default', function() {
-      expect(stripe.getApiField('timeout')).to.equal(require('http').createServer().timeout);
+      expect(fusebill.getApiField('timeout')).to.equal(require('http').createServer().timeout);
     });
     it('Should allow me to set a custom timeout', function() {
-      stripe.setTimeout(900);
-      expect(stripe.getApiField('timeout')).to.equal(900);
+      fusebill.setTimeout(900);
+      expect(fusebill.getApiField('timeout')).to.equal(900);
     });
     it('Should allow me to set null, to reset to the default', function() {
-      stripe.setTimeout(null);
-      expect(stripe.getApiField('timeout')).to.equal(require('http').createServer().timeout);
+      fusebill.setTimeout(null);
+      expect(fusebill.getApiField('timeout')).to.equal(require('http').createServer().timeout);
     });
   });
 
@@ -52,7 +52,7 @@ describe('Stripe Module', function() {
     describe('Any given endpoint', function() {
       it('Will call a callback if successful', function() {
         var defer = Promise.defer();
-        stripe.customers.create({
+        fusebill.customers.create({
           description: 'Some customer',
           card: {
             number: '4242424242424242',
@@ -62,6 +62,7 @@ describe('Stripe Module', function() {
         }, function(err, customer) {
           cleanup.deleteCustomer(customer.id);
           defer.resolve('Called!');
+          defer.reject('Called!');
         });
 
         return expect(defer.promise).to.eventually.equal('Called!');
@@ -69,7 +70,7 @@ describe('Stripe Module', function() {
 
       it('Will expose HTTP response object', function() {
         var defer = Promise.defer();
-        stripe.customers.create({
+        fusebill.customers.create({
           description: 'Some customer',
           card: {
             number: '4242424242424242',
@@ -89,7 +90,7 @@ describe('Stripe Module', function() {
       it('Given an error the callback will receive it', function() {
         var defer = Promise.defer();
 
-        stripe.customers.createCard('nonExistentCustId', {card: {}}, function(err, customer) {
+        fusebill.customers.createCard('nonExistentCustId', {card: {}}, function(err, customer) {
           if (err) {
             defer.resolve('ErrorWasPassed');
           } else {

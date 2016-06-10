@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('BitcoinReceivers Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.bitcoinReceivers.retrieve('receiverId1');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.bitcoinReceivers.retrieve('receiverId1');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/bitcoin/receivers/receiverId1',
         headers: {},
@@ -18,13 +18,13 @@ describe('BitcoinReceivers Resource', function() {
 
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.bitcoinReceivers.create({
+      fusebill.bitcoinReceivers.create({
         amount: 200,
         currency: 'usd',
         description: 'some details',
-        email: 'do+fill_now@stripe.com',
+        email: 'do+fill_now@fusebill.com',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/bitcoin/receivers',
         headers: {},
@@ -32,7 +32,7 @@ describe('BitcoinReceivers Resource', function() {
           amount: 200,
           currency: 'usd',
           description: 'some details',
-          email: 'do+fill_now@stripe.com',
+          email: 'do+fill_now@fusebill.com',
         },
       });
     });
@@ -40,8 +40,8 @@ describe('BitcoinReceivers Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.bitcoinReceivers.list();
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.bitcoinReceivers.list();
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/bitcoin/receivers',
         headers: {},
@@ -52,11 +52,11 @@ describe('BitcoinReceivers Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request to the top-level API', function() {
-      stripe.bitcoinReceivers.update(
+      fusebill.bitcoinReceivers.update(
         'btcrcv_123',
         {metadata: {key: 'value'}}
       );
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/bitcoin/receivers/btcrcv_123',
         data: {metadata: {key: 'value'}},
@@ -67,10 +67,10 @@ describe('BitcoinReceivers Resource', function() {
 
   describe('listTransactions', function() {
     it('Sends the correct request', function() {
-      stripe.bitcoinReceivers.listTransactions('receiverId', {
+      fusebill.bitcoinReceivers.listTransactions('receiverId', {
         limit: 1,
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/bitcoin/receivers/receiverId/transactions',
         headers: {},

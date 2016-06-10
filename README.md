@@ -1,4 +1,4 @@
-# Stripe node.js bindings [![Build Status](https://travis-ci.org/stripe/stripe-node.png?branch=master)](https://travis-ci.org/stripe/stripe-node)
+# Fusebill node.js bindings [![Build Status](https://travis-ci.org/stripe/stripe-node.png?branch=master)](https://travis-ci.org/stripe/stripe-node)
 
 ## Version 2 Update Notice
 
@@ -52,7 +52,7 @@ stripe.customers.create({
 });
 ```
 
-To use the `Stripe-Account` header, simply pass an extra options hash:
+To use the `Fusebill-Account` header, simply pass an extra options hash:
 
 ```js
 // Retrieve the balance for a connected account:
@@ -207,7 +207,7 @@ stripe.balance.retrieve({
  * [Version 2 Overview](https://github.com/stripe/stripe-node/wiki/Version-2)
  * [REST API Version](https://github.com/stripe/stripe-node/wiki/REST-API-Version)
  * [Error Handling](https://github.com/stripe/stripe-node/wiki/Error-Handling)
- * [Using Stripe Connect](https://github.com/stripe/stripe-node/wiki/Using-Stripe-Connect-with-node.js)
+ * [Using Fusebill Connect](https://github.com/stripe/stripe-node/wiki/Using-Fusebill-Connect-with-node.js)
 
 ## Development
 
@@ -218,7 +218,7 @@ $ npm install
 $ npm test
 ```
 
-If you wish, you may run tests using your Stripe *Test* API key by setting the environment variable `STRIPE_TEST_API_KEY` before running tests:
+If you wish, you may run tests using your Fusebill *Test* API key by setting the environment variable `STRIPE_TEST_API_KEY` before running tests:
 
 ```bash
 $ export STRIPE_TEST_API_KEY='sk_test....'
@@ -231,4 +231,4 @@ If you don't have a prefixed key (in the form `sk_test_...`) you can get one by 
 
 ## Author
 
-Originally by [Ask Bjørn Hansen](https://github.com/abh) (ask@develooper.com). Development was sponsored by YellowBot. Now officially maintained by Stripe.
+Originally by [Ask Bjørn Hansen](https://github.com/abh) (ask@develooper.com). Development was sponsored by YellowBot. Now officially maintained by Fusebill.

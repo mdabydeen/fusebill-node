@@ -1,15 +1,16 @@
 {
-  "name": "stripe",
-  "version": "4.7.0",
-  "description": "Stripe API wrapper",
+  "name": "fusebill",
+  "version": "1.0.0",
+  "description": "Fusebill API wrapper",
   "keywords": [
-    "stripe",
+    "fuesbill",
     "payment processing",
     "credit cards",
-    "api"
+    "api",
+    "subscriptions"
   ],
-  "homepage": "https://github.com/stripe/stripe-node",
-  "author": "Stripe <support@stripe.com> (https://stripe.com/)",
+  "homepage": "https://github.com/justinffs/fusebill-node",
+  "author": "Justin Hamade <justin@fingerfoodstudios.com> (https://fingerfoodstudios.com/)",
   "contributors": [
     "Ask Bjørn Hansen <ask@develooper.com> (http://www.askask.com/)",
     "Michelle Bu <michelle@stripe.com>",
@@ -18,13 +19,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/stripe/stripe-node.git"
+    "url": "git://github.com/justinffs/fusebill-node.git"
   },
-  "bugs:": "https://github.com/stripe/stripe-node/issues",
+  "bugs:": "https://github.com/justinffs/fusebill-node/issues",
   "engines": {
-    "node": ">= v0.10.0"
+    "node": ">= v0.12.0"
   },
-  "main": "lib/stripe.js",
+  "main": "lib/fusebill.js",
   "devDependencies": {
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",

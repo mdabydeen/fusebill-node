@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('OrderReturn Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.orderReturns.retrieve('orderReturnIdFoo123');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.orderReturns.retrieve('orderReturnIdFoo123');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/order_returns/orderReturnIdFoo123',
         data: {},
@@ -18,10 +18,10 @@ describe('OrderReturn Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.orderReturns.list({
+      fusebill.orderReturns.list({
         limit: 3,
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/order_returns',
         data: {
@@ -32,10 +32,10 @@ describe('OrderReturn Resource', function() {
     });
 
     it('Supports filtering by order', function() {
-      stripe.orderReturns.list({
+      fusebill.orderReturns.list({
         order: 'orderIdFoo123',
       });
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/order_returns',
         data: {

@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('Events Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.events.retrieve('eventIdBaz');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.events.retrieve('eventIdBaz');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/events/eventIdBaz',
         headers: {},
@@ -18,8 +18,8 @@ describe('Events Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.events.list({count: 25});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.events.list({count: 25});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/events',
         headers: {},

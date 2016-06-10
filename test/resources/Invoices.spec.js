@@ -1,13 +1,13 @@
 'use strict';
 
-var stripe = require('../testUtils').getSpyableStripe();
+var fusebill = require('../testUtils').getSpyableFusebill();
 var expect = require('chai').expect;
 
 describe('Invoices Resource', function() {
   describe('retrieve', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.retrieve('invoiceId1');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.retrieve('invoiceId1');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/invoices/invoiceId1',
         headers: {},
@@ -18,8 +18,8 @@ describe('Invoices Resource', function() {
 
   describe('create', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.create({application_fee: 111});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.create({application_fee: 111});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/invoices',
         headers: {},
@@ -30,8 +30,8 @@ describe('Invoices Resource', function() {
 
   describe('update', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.update('invoiceId1', {application_fee: 200});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.update('invoiceId1', {application_fee: 200});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/invoices/invoiceId1',
         headers: {},
@@ -42,8 +42,8 @@ describe('Invoices Resource', function() {
 
   describe('retrieveLines', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.retrieveLines('invoiceId2');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.retrieveLines('invoiceId2');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/invoices/invoiceId2/lines',
         headers: {},
@@ -55,8 +55,8 @@ describe('Invoices Resource', function() {
   describe('retrieveUpcoming', function() {
     describe('With just a customer ID', function() {
       it('Sends the correct request', function() {
-        stripe.invoices.retrieveUpcoming('customerId1');
-        expect(stripe.LAST_REQUEST).to.deep.equal({
+        fusebill.invoices.retrieveUpcoming('customerId1');
+        expect(fusebill.LAST_REQUEST).to.deep.equal({
           method: 'GET',
           url: '/v1/invoices/upcoming?customer=customerId1',
           headers: {},
@@ -67,8 +67,8 @@ describe('Invoices Resource', function() {
 
     describe('With a subscription ID in addition to a customer ID', function() {
       it('Sends the correct request', function() {
-        stripe.invoices.retrieveUpcoming('customerId1', 'subscriptionId123');
-        expect(stripe.LAST_REQUEST).to.deep.equal({
+        fusebill.invoices.retrieveUpcoming('customerId1', 'subscriptionId123');
+        expect(fusebill.LAST_REQUEST).to.deep.equal({
           method: 'GET',
           url: '/v1/invoices/upcoming?customer=customerId1&subscription=subscriptionId123',
           headers: {},
@@ -79,8 +79,8 @@ describe('Invoices Resource', function() {
 
     describe('With a options object in addition to a customer ID', function() {
       it('Sends the correct request', function() {
-        stripe.invoices.retrieveUpcoming('customerId1', {plan: 'planId123'});
-        expect(stripe.LAST_REQUEST).to.deep.equal({
+        fusebill.invoices.retrieveUpcoming('customerId1', {plan: 'planId123'});
+        expect(fusebill.LAST_REQUEST).to.deep.equal({
           method: 'GET',
           url: '/v1/invoices/upcoming?customer=customerId1&plan=planId123',
           headers: {},
@@ -92,8 +92,8 @@ describe('Invoices Resource', function() {
 
   describe('pay', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.pay('invoiceId6');
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.pay('invoiceId6');
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'POST',
         url: '/v1/invoices/invoiceId6/pay',
         headers: {},
@@ -104,8 +104,8 @@ describe('Invoices Resource', function() {
 
   describe('list', function() {
     it('Sends the correct request', function() {
-      stripe.invoices.list({count: 25});
-      expect(stripe.LAST_REQUEST).to.deep.equal({
+      fusebill.invoices.list({count: 25});
+      expect(fusebill.LAST_REQUEST).to.deep.equal({
         method: 'GET',
         url: '/v1/invoices',
         headers: {},
