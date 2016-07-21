@@ -9,7 +9,7 @@
     "api",
     "subscriptions"
   ],
-  "homepage": "https://github.com/justinffs/fusebill-node",
+  "homepage": "https://github.com/fingerfoodstudios/fusebill-node",
   "author": "Justin Hamade <justin@fingerfoodstudios.com> (https://fingerfoodstudios.com/)",
   "contributors": [
     "Ask Bjørn Hansen <ask@develooper.com> (http://www.askask.com/)",
@@ -19,9 +19,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/justinffs/fusebill-node.git"
+    "url": "git://github.com/fingerfoodstudios/fusebill-node.git"
   },
-  "bugs:": "https://github.com/justinffs/fusebill-node/issues",
+  "bugs:": "https://github.com/fingerfoodstudios/fusebill-node/issues",
   "engines": {
     "node": ">= v0.12.0"
   },
