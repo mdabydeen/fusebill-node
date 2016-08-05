@@ -1,6 +1,6 @@
 {
-  "name": "fusebill",
-  "version": "1.0.1",
+  "name": "fusebill-node",
+  "version": "1.1.0",
   "description": "Fusebill API wrapper",
   "keywords": [
     "fuesbill",
@@ -9,19 +9,22 @@
     "api",
     "subscriptions"
   ],
-  "homepage": "https://github.com/fingerfoodstudios/fusebill-node",
-  "author": "Justin Hamade <justin@fingerfoodstudios.com> (https://fingerfoodstudios.com/)",
+  "homepage": "http://git.skrumble.local/nu-modules/fusebill-node.git",
+  "author": "Michael Dabydeen <michael@skrumble.com> (http://skrumble.com)",
   "contributors": [
     "Ask Bjørn Hansen <ask@develooper.com> (http://www.askask.com/)",
     "Michelle Bu <michelle@stripe.com>",
     "Alex Sexton <alex@stripe.com>",
-    "James Padolsey"
+    "James Padolsey",
+    "Justin Hamade <justin@fingerfoodstudios.com> (https://fingerfoodstudios.com/)",
+    "Michael Dabydeen<michael@skrumble.com> (http://www.skrumble.com)"
   ],
   "repository": {
-    "type": "git",
-    "url": "git://github.com/fingerfoodstudios/fusebill-node.git"
+    "type": "ssh",
+    "url": "ssh://git@git.skrumble.local:12777/nu-modules/fusebill-node.git"
   },
-  "bugs:": "https://github.com/fingerfoodstudios/fusebill-node/issues",
+  "private": true,
+  "bugs:": "http://jira.skrumble.local:8080/secure/RapidBoard.jspa?rapidView=6&projectKey=SKRUM&view=detail",
   "engines": {
     "node": ">= v0.12.0"
   },
