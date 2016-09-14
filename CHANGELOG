@@ -1,3 +1,5 @@
+1.0.4 Sept 14, 2016
+  - Allow purchase preview
 1.0.3 Aug 10, 2016
   - Handle success response with "null" body
   - Add payments PR#2 from mdabydeen
