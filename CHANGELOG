@@ -1,3 +1,5 @@
+1.0.6 Sept 19, 2016
+  - Add a retry to all 5XX server errors
 1.0.4 Sept 14, 2016
   - Allow purchase preview
   - Add endpoint for list customer purchases
