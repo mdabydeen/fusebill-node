@@ -1,3 +1,5 @@
+1.0.8 Oct 6, 2016
+  - Add subscriptionProducts retrieve and update
 1.0.7 Sept 22, 2016
   - Add preview option to subscription update
   - Fix callback to not retry for non 5XX errors
