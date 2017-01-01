@@ -75,6 +75,7 @@ fusebill.balance.retrieve({
   * [`listEmailPreferences(customerId)`](http://help.fusebill.com/api-read-customer-email-preferences)
   * [`listInvoices(customerId)`](http://help.fusebill.com/api-list-posted-invoices)
   * [`listDraftInvoices(customerId)`](http://help.fusebill.com/api-list-draft-invoices)
+  * [`listCreditCards(customerId)`](http://help.fusebill.com/api-read-credit-card-payment-methods)
  * customerActivation
   * [`activate(customerId)`](http://help.fusebill.com/api-customer-activation)
  * customerAddressPreferences
